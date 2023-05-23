@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/payment-voucher`,
+    require('./paymentVoucherCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/payment-voucher/:id`,
+    require('./paymentVoucherUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/payment-voucher/import`,
+    require('./paymentVoucherImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/payment-voucher`,
+    require('./paymentVoucherDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/payment-voucher/autocomplete`,
+    require('./paymentVoucherAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/payment-voucher`,
+    require('./paymentVoucherList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/payment-voucher/:id`,
+    require('./paymentVoucherFind').default,
+  );
+};

@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/sell-item`,
+    require('./sellItemCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/sell-item/:id`,
+    require('./sellItemUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/sell-item/import`,
+    require('./sellItemImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/sell-item`,
+    require('./sellItemDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/sell-item/autocomplete`,
+    require('./sellItemAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/sell-item`,
+    require('./sellItemList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/sell-item/:id`,
+    require('./sellItemFind').default,
+  );
+};

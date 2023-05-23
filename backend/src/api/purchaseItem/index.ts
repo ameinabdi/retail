@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/purchase-item`,
+    require('./purchaseItemCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/purchase-item/:id`,
+    require('./purchaseItemUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/purchase-item/import`,
+    require('./purchaseItemImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/purchase-item`,
+    require('./purchaseItemDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/purchase-item/autocomplete`,
+    require('./purchaseItemAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/purchase-item`,
+    require('./purchaseItemList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/purchase-item/:id`,
+    require('./purchaseItemFind').default,
+  );
+};
