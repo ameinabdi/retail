@@ -23,7 +23,7 @@ const en = {
   },
 
   app: {
-    title: 'Nextpos',
+    title: 'Adaltech POS',
   },
 
   api: {

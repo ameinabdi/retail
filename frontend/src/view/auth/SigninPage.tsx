@@ -115,7 +115,7 @@ const SigninPage = (props) => {
         <Logo>
           <img
               src='/images/landscape.png'
-              width="200px"
+              width="350px"
               alt={i18n('app.title')}
             />
         </Logo>

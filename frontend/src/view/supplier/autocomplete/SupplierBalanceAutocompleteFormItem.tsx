@@ -50,6 +50,7 @@ const SupplierBalanceAutocompleteFormItem = (props) => {
       const key = value.id;
       let label = value.label;
       let data = value.data;
+      
       if (value.supplierName) {
         label = value.supplierName;
         data = value
@@ -58,6 +59,7 @@ const SupplierBalanceAutocompleteFormItem = (props) => {
       return {
         key,
         label,
+        data
       };
     },
 

@@ -9,7 +9,8 @@ import { createRateLimiter } from './apiRateLimiter';
 import { languageMiddleware } from '../middlewares/languageMiddleware';
 import authSocial from './auth/authSocial';
 import setupSwaggerUI from './apiDocumentation';
-
+const path = require('path');
+const fs = require('fs');
 const app = express();
 
 // Enables CORS
@@ -87,5 +88,19 @@ routes.param('tenantId', tenantMiddleware);
 
 // Add the routes to the /api endpoint
 app.use('/api', routes);
+// Add the routes to the /api endpoint
+const frontendDir = path.join(
+  __dirname,
+  '../../../frontend/build',
+);
 
+if (fs.existsSync(frontendDir)) {
+  app.use('/', express.static(frontendDir));
+
+  app.get('*', function(request, response) {
+    response.sendFile(
+      path.resolve(frontendDir, 'index.html'),
+    );
+  });
+}
 export default app;

@@ -146,7 +146,7 @@ const AppMenu = (props) => {
             <Link to="/">
               <img
                 src='/images/landscape.png'
-                width="64px"
+                width="150px"
                 alt={i18n('app.title')}
               />
             </Link>
