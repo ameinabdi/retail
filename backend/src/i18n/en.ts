@@ -173,6 +173,20 @@ const en = {
         }
       }
     },
+    advance: {
+      errors: {
+        unique: {
+
+        }
+      }
+    },
+    salary: {
+      errors: {
+        unique: {
+
+        }
+      }
+    },
   }
 };
 

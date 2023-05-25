@@ -6,7 +6,8 @@ import UserRepository from '../../database/repositories/userRepository';
 import TenantUserRepository from '../../database/repositories/tenantUserRepository';
 import Plans from '../../security/plans';
 import { IServiceOptions } from '../IServiceOptions';
-
+import bcrypt from 'bcrypt';
+const BCRYPT_SALT_ROUNDS = 12;
 /**
  * Handles the edition of the user(s) via the User page.
  */
@@ -35,6 +36,7 @@ export default class UserEditor {
 
       await this._loadUser();
       await this._updateAtDatabase();
+      await this._updateUser();
 
       await SequelizeRepository.commitTransaction(
         this.transaction,
@@ -88,6 +90,26 @@ export default class UserEditor {
       this.options,
     );
   }
+
+  /**
+   * Updates the user at the database.
+   */
+  async _updateUser() {
+    const hashedPassword = await bcrypt.hash(
+      this.data.password,
+      BCRYPT_SALT_ROUNDS,
+    );
+    const userData = {
+      ...this.data,
+      password:hashedPassword
+    }
+    await UserRepository.update(
+      this.data.id,
+      userData,
+      this.options,
+    );
+  }
+
 
   /**
    * Checks if the user is removing the responsable for the plan

@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/advance`,
+    require('./advanceCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/advance/:id`,
+    require('./advanceUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/advance/import`,
+    require('./advanceImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/advance`,
+    require('./advanceDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/advance/autocomplete`,
+    require('./advanceAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/advance`,
+    require('./advanceList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/advance/:id`,
+    require('./advanceFind').default,
+  );
+};

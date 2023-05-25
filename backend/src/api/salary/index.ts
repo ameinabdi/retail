@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/salary`,
+    require('./salaryCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/salary/:id`,
+    require('./salaryUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/salary/import`,
+    require('./salaryImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/salary`,
+    require('./salaryDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/salary/autocomplete`,
+    require('./salaryAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/salary`,
+    require('./salaryList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/salary/:id`,
+    require('./salaryFind').default,
+  );
+};

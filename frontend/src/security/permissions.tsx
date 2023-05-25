@@ -599,7 +599,86 @@ class Permissions {
         id: 'receiptVoucherAutocomplete',
         allowedRoles: [roles.admin,roles.owner,roles.manager,roles.casheir],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
-      },   
+      },  
+      advanceImport: {
+        id: 'advanceImport',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
+      advanceCreate: {
+        id: 'advanceCreate',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      advanceEdit: {
+        id: 'advanceEdit',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      advanceDestroy: {
+        id: 'advanceDestroy',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      advanceRead: {
+        id: 'advanceRead',
+        allowedRoles: [roles.admin, roles.owner,roles.manager,roles.casheir],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
+      advanceAutocomplete: {
+        id: 'advanceAutocomplete',
+        allowedRoles: [roles.admin, roles.owner,roles.manager,roles.casheir],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
+
+      salaryImport: {
+        id: 'salaryImport',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
+      salaryCreate: {
+        id: 'salaryCreate',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      salaryEdit: {
+        id: 'salaryEdit',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      salaryDestroy: {
+        id: 'salaryDestroy',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      salaryRead: {
+        id: 'salaryRead',
+        allowedRoles: [roles.admin, roles.owner,roles.manager,roles.casheir],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
+      salaryAutocomplete: {
+        id: 'salaryAutocomplete',
+        allowedRoles: [roles.admin, roles.owner,roles.manager,roles.casheir],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
     };
   }
 

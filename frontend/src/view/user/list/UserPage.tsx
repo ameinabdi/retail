@@ -1,6 +1,7 @@
 import React from 'react';
 import { i18n } from 'src/i18n';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
+import TopbarWrapper from 'src/view/layout/styles/TopbarWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
 import UserFilter from 'src/view/user/list/UserFilter';
@@ -19,9 +20,11 @@ const UserPage = (props) => {
       />
 
       <ContentWrapper>
+        <TopbarWrapper>
         <PageTitle>{i18n('user.title')}</PageTitle>
 
         <UserToolbar />
+        </TopbarWrapper>
         <UserFilter />
         <UserTable />
       </ContentWrapper>

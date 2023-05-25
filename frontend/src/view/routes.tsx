@@ -570,6 +570,81 @@ const privateRoutes = [
     permissionRequired: permissions.receiptVoucherRead,
     exact: true,
   },
+  {
+    path: '/advance',
+    loader: () =>
+      import('src/view/advance/list/AdvanceListPage'),
+    permissionRequired: permissions.advanceRead,
+    exact: true,
+  },
+  {
+    path: '/advance/new',
+    loader: () =>
+      import('src/view/advance/form/AdvanceFormPage'),
+    permissionRequired: permissions.advanceCreate,
+    exact: true,
+  },
+  {
+    path: '/advance/importer',
+    loader: () =>
+      import(
+        'src/view/advance/importer/AdvanceImporterPage'
+      ),
+    permissionRequired: permissions.advanceImport,
+    exact: true,
+  },
+  {
+    path: '/advance/:id/edit',
+    loader: () =>
+      import('src/view/advance/form/AdvanceFormPage'),
+    permissionRequired: permissions.advanceEdit,
+    exact: true,
+  },
+  {
+    path: '/advance/:id',
+    loader: () =>
+      import('src/view/advance/view/AdvanceViewPage'),
+    permissionRequired: permissions.advanceRead,
+    exact: true,
+  },
+
+  {
+    path: '/salary',
+    loader: () =>
+      import('src/view/salary/list/SalaryListPage'),
+    permissionRequired: permissions.salaryRead,
+    exact: true,
+  },
+  {
+    path: '/salary/new',
+    loader: () =>
+      import('src/view/salary/form/SalaryFormPage'),
+    permissionRequired: permissions.salaryCreate,
+    exact: true,
+  },
+  {
+    path: '/salary/importer',
+    loader: () =>
+      import(
+        'src/view/salary/importer/SalaryImporterPage'
+      ),
+    permissionRequired: permissions.salaryImport,
+    exact: true,
+  },
+  {
+    path: '/salary/:id/edit',
+    loader: () =>
+      import('src/view/salary/form/SalaryFormPage'),
+    permissionRequired: permissions.salaryEdit,
+    exact: true,
+  },
+  {
+    path: '/salary/:id',
+    loader: () =>
+      import('src/view/salary/view/SalaryViewPage'),
+    permissionRequired: permissions.salaryRead,
+    exact: true,
+  },
 ].filter(Boolean);
 
 const publicRoutes = [

@@ -6,6 +6,7 @@ import ReceiptVoucherListToolbar from 'src/view/receiptVoucher/list/ReceiptVouch
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import TopbarWrapper from 'src/view/layout/styles/TopbarWrapper';
 
 const ReceiptVoucherListPage = (props) => {
   return (
@@ -18,11 +19,13 @@ const ReceiptVoucherListPage = (props) => {
       />
 
       <ContentWrapper>
+      <TopbarWrapper>
         <PageTitle>
           {i18n('entities.receiptVoucher.list.title')}
         </PageTitle>
 
         <ReceiptVoucherListToolbar />
+        </TopbarWrapper>
         <ReceiptVoucherListFilter />
         <ReceiptVoucherListTable />
       </ContentWrapper>

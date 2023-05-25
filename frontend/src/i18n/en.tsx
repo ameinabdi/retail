@@ -857,6 +857,138 @@ const en = {
             'Files/Images columns must be the URLs of the files separated by space.',
         },
       },
+      advance: {
+        name: 'advance',
+        label: 'Advances',
+        menu: 'Advances',
+        exporterFileName: 'advance_export',
+        list: {
+          menu: 'Advances',
+          title: 'Advances',
+        },
+        create: {
+          success: 'Advance successfully saved',
+        },
+        update: {
+          success: 'Advance successfully saved',
+        },
+        destroy: {
+          success: 'Advance successfully deleted',
+        },
+        destroyAll: {
+          success: 'Advance(s) successfully deleted',
+        },
+        edit: {
+          title: 'Edit Advance',
+        },
+        fields: {
+          id: 'Id',
+          'employee': 'Employee',
+          'amountRange': 'Amount',
+          'amount': 'Amount',
+          'note': 'Note',
+          'advanceDateRange': 'AdvanceDate',
+          'advanceDate': 'AdvanceDate',
+          'account': 'Account',
+          'shop': 'Shop',
+          createdAt: 'Created at',
+          updatedAt: 'Updated at',
+          createdAtRange: 'Created at',
+        },
+        enumerators: {
+
+        },
+        placeholders: {
+
+        },
+        hints: {
+
+        },
+        new: {
+          title: 'New Advance',
+        },
+        view: {
+          title: 'View Advance',
+        },
+        importer: {
+          title: 'Import Advances',
+          fileName: 'advance_import_template',
+          hint:
+            'Files/Images columns must be the URLs of the files separated by space.',
+        },
+      },
+
+    salary: {
+        name: 'salary',
+        label: 'Salaries',
+        menu: 'Salaries',
+        exporterFileName: 'salary_export',
+        list: {
+          menu: 'Salaries',
+          title: 'Salaries',
+        },
+        create: {
+          success: 'Salary successfully saved',
+        },
+        update: {
+          success: 'Salary successfully saved',
+        },
+        destroy: {
+          success: 'Salary successfully deleted',
+        },
+        destroyAll: {
+          success: 'Salary(s) successfully deleted',
+        },
+        edit: {
+          title: 'Edit Salary',
+        },
+        fields: {
+          id: 'Id',
+          'employee': 'Employee',
+          'basicSalaryRange': 'Basic Salary',
+          'basicSalary': 'Basic Salary',
+          'allowanceSalaryRange': 'Allowance Salary',
+          'allowanceSalary': 'Allowance Salary',
+          'totalSalaryRange': 'Total Salary',
+          'totalSalary': 'Total Salary',
+          'advanceRange': 'Advance',
+          'advance': 'Advance',
+          'netSalaryRange': 'Net Salary',
+          'netSalary': 'Net Salary',
+          'paidSalaryRange': 'PaidSalary',
+          'paidSalary': 'PaidSalary',
+          'balanceRange': 'Balance',
+          'balance': 'Balance',
+          'account': 'Account',
+          'salaryDateRange': 'SalaryDate',
+          'salaryDate': 'SalaryDate',
+          'shop': 'Shop',
+          createdAt: 'Created at',
+          updatedAt: 'Updated at',
+          createdAtRange: 'Created at',
+        },
+        enumerators: {
+
+        },
+        placeholders: {
+
+        },
+        hints: {
+
+        },
+        new: {
+          title: 'New Salary',
+        },
+        view: {
+          title: 'View Salary',
+        },
+        importer: {
+          title: 'Import Salaries',
+          fileName: 'salary_import_template',
+          hint:
+            'Files/Images columns must be the URLs of the files separated by space.',
+        },
+      },
   },
 
   auth: {
@@ -971,14 +1103,26 @@ const en = {
       label: 'Admin',
       description: 'Full access to all resources',
     },
-    custom: {
-      label: 'Custom Role',
-      description: 'Custom access to resources',
+    owner: {
+      label: 'Owner Role',
+      description: 'Full access to all resources',
+    },
+    manager: {
+      label: 'Manager Role',
+      description: 'Manager access to resources',
+    },
+    casheir: {
+      label: 'Casheir Role',
+      description: 'Casheir access to resources',
+    },
+    seller: {
+      label: 'Seller Role',
+      description: 'Seller access to resources',
     },
   },
 
   user: {
-    invite: 'Invite',
+    invite: 'Create User',
     title: 'Users',
     menu: 'Users',
     fields: {
@@ -990,6 +1134,9 @@ const en = {
       firstName: 'First Name',
       lastName: 'Last Name',
       status: 'Status',
+      shop:'Shop',
+      basicSalary:'basic Salary',
+      allowanceSalary:'allowance Salary',
       phoneNumber: 'Phone Number',
       role: 'Role',
       createdAt: 'Created at',

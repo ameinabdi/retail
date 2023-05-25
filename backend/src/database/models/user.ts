@@ -21,6 +21,18 @@ export default function (sequelize, DataTypes) {
           len: [0, 80],
         },
       },
+      basicSalary: {
+        type: DataTypes.DECIMAL(24, 2),
+        validate: {
+
+        }
+      },
+      allowanceSalary: {
+        type: DataTypes.DECIMAL(24, 2),
+        validate: {
+
+        }
+      },
       password: {
         type: DataTypes.STRING(255),
         allowNull: true,
@@ -129,7 +141,10 @@ export default function (sequelize, DataTypes) {
     models.user.hasMany(models.tenantUser, {
       as: 'tenants',
     });
-
+    models.user.belongsTo(models.shop, {
+      as: 'shop',
+      constraints: false,
+    });
     models.user.hasMany(models.file, {
       as: { singular: 'avatar', plural: 'avatars' },
       foreignKey: 'belongsToId',

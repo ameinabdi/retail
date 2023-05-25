@@ -6,6 +6,7 @@ import AuditLogToolbar from 'src/view/auditLog/AuditLogToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import TopbarWrapper from '../layout/styles/TopbarWrapper';
 
 const AuditLogPage = (props) => {
   return (
@@ -18,8 +19,10 @@ const AuditLogPage = (props) => {
       />
 
       <ContentWrapper>
+      <TopbarWrapper>
         <PageTitle>{i18n('auditLog.title')}</PageTitle>
         <AuditLogToolbar />
+        </TopbarWrapper>
         <AuditLogFilter />
         <AuditLogTable />
       </ContentWrapper>

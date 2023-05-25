@@ -82,7 +82,8 @@ require('./expense').default(routes);
 require('./paymentVoucher').default(routes);
 require('./receiptVoucher').default(routes);
 require('./dashboard').default(routes);
-
+require('./advance').default(routes);
+require('./salary').default(routes);
 // Loads the Tenant if the :tenantId param is passed
 routes.param('tenantId', tenantMiddleware);
 

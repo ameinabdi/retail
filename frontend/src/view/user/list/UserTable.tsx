@@ -11,6 +11,7 @@ import ButtonLink from 'src/view/shared/styles/ButtonLink';
 import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import UserStatusView from 'src/view/user/view/UserStatusView';
 import { UserOutlined } from '@ant-design/icons';
+import ShopListItem from 'src/view/shop/list/ShopListItem';
 
 const UserTable = (props) => {
   const dispatch = useDispatch();
@@ -69,14 +70,36 @@ const UserTable = (props) => {
       },
     },
     {
+      title: i18n('user.fields.fullName'),
+      sorter: true,
+      dataIndex: 'fullName',
+    },
+    
+    {
       title: i18n('user.fields.email'),
       sorter: true,
       dataIndex: 'email',
     },
     {
-      title: i18n('user.fields.fullName'),
+      title: i18n('user.fields.phoneNumber'),
       sorter: true,
-      dataIndex: 'fullName',
+      dataIndex: 'phoneNumber',
+    },
+    {
+      title: i18n('user.fields.basicSalary'),
+      sorter: true,
+      dataIndex: 'basicSalary',
+    },
+    {
+      title: i18n('user.fields.allowanceSalary'),
+      sorter: true,
+      dataIndex: 'allowanceSalary',
+    },
+    {
+      title: i18n('user.fields.shop'),
+      sorter: true,
+      dataIndex: 'shop',
+      render:(value)=><ShopListItem value={value} />
     },
     {
       title: i18n('user.fields.roles'),

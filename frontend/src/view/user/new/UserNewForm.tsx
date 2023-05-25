@@ -18,12 +18,44 @@ import * as yup from 'yup';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
 import userEnumerators from 'src/modules/user/userEnumerators';
 import { yupResolver } from '@hookform/resolvers/yup';
+import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocompleteFormItem';
 
 const singleSchema = yup.object().shape({
   email: yupFormSchemas.email(i18n('user.fields.email')),
   roles: yupFormSchemas.stringArray(
     i18n('user.fields.roles'),
     { required: true, min: 1 },
+  ),
+  fullName: yupFormSchemas.string(
+    i18n('user.fields.fullName'),
+    {
+      "required": true
+    },
+  ),
+  password: yupFormSchemas.string(
+    i18n('user.fields.password'),
+    {
+    },
+  ),
+  phoneNumber: yupFormSchemas.string(
+    i18n('user.fields.phoneNumber'),
+    {},
+  ),
+  shop: yupFormSchemas.relationToOne(
+    i18n('user.fields.shop'),
+    {},
+  ),
+  basicSalary: yupFormSchemas.decimal(
+    i18n('user.fields.basicSalary'),
+    {
+      "scale": 2
+    },
+  ),
+  allowanceSalary: yupFormSchemas.decimal(
+    i18n('user.fields.allowanceSalary'),
+    {
+      "scale": 2
+    },
   ),
 });
 
@@ -58,6 +90,13 @@ const UserNewForm = (props) => {
     emails: [],
     email: '',
     roles: [],
+    fullName:'',
+    phoneNumber:'',
+    password:'',
+    basicSalary: '',
+    allowanceSalary: '',
+    shop:'',
+
   }));
 
   const form = useForm({
@@ -89,6 +128,13 @@ const UserNewForm = (props) => {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
+        <InputFormItem
+            name="fullName"
+            label={i18n('user.fields.fullName')}  
+            required={true}
+            layout={formItemLayout}
+            autoFocus
+          />
           {single ? (
             <InputFormItem
               name="email"
@@ -107,7 +153,19 @@ const UserNewForm = (props) => {
               autoFocus
             />
           )}
-
+          <InputFormItem
+            name="password"
+            label={i18n('user.fields.password')}  
+            required={true}
+            layout={formItemLayout}
+            autoFocus
+          />
+          <InputFormItem
+            name="phoneNumber"
+            label={i18n('user.fields.phoneNumber')}  
+            required={false}
+            layout={formItemLayout}
+          />
           <SelectFormItem
             name="roles"
             label={i18n('user.fields.roles')}
@@ -119,7 +177,25 @@ const UserNewForm = (props) => {
             mode="multiple"
             layout={formItemLayout}
           />
-
+           <InputFormItem
+            name="basicSalary"
+            label={i18n('user.fields.basicSalary')}  
+            required={false}
+            layout={formItemLayout}
+          />
+          <InputFormItem
+            name="allowanceSalary"
+            label={i18n('user.fields.allowanceSalary')}  
+            required={false}
+            layout={formItemLayout}
+          />
+          <ShopAutocompleteFormItem
+            name="shop"
+            label={i18n('user.fields.shop')}
+            required={false}
+            showCreate={!props.modal}
+            layout={formItemLayout}
+          />
           <Form.Item
             className="form-buttons"
             {...tailFormItemLayout}

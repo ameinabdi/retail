@@ -18,7 +18,8 @@ import expense from 'src/modules/expense/expenseReducers';
 import paymentVoucher from 'src/modules/paymentVoucher/paymentVoucherReducers';
 import receiptVoucher from 'src/modules/receiptVoucher/receiptVoucherReducers';
 import dashboard from 'src/modules/dashboard/dashboardReducers';
-
+import advance from 'src/modules/advance/advanceReducers';
+import salary from 'src/modules/salary/salaryReducers';
 import { combineReducers } from 'redux';
 import plan from 'src/modules/plan/planReducers';
 
@@ -45,4 +46,6 @@ export default (history) =>
     paymentVoucher,
     receiptVoucher,
     dashboard, 
+    advance,
+    salary,
   });

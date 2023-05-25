@@ -27,9 +27,13 @@ export default class UserRepository {
       {
         id: data.id || undefined,
         email: data.email,
-        firstName: data.firstName || null,
+        firstName: data.firstName ||  data.fullName,
         lastName: data.lastName || null,
         phoneNumber: data.phoneNumber || null,
+        basicSalary:data.basicSalary || null,
+        password:data.password,
+        allowanceSalary:data.allowanceSalary || null,
+        shopId:data.shop || null,
         importHash: data.importHash || null,
         createdById: currentUser.id,
         updatedById: currentUser.id,
@@ -320,8 +324,12 @@ export default class UserRepository {
 
     await user.update(
       {
-        firstName: data.firstName || null,
+        firstName: data.firstName || data.fullName,
         lastName: data.lastName || null,
+        basicSalary:data.basicSalary || null,
+        password:data.password,
+        allowanceSalary:data.allowanceSalary || null,
+        shopId:data.shop || null,
         phoneNumber: data.phoneNumber || null,
         updatedById: currentUser.id,
       },
@@ -408,7 +416,12 @@ export default class UserRepository {
     );
 
     let whereAnd: Array<any> = [];
-    let include: any = [];
+    let include: any = [
+      {
+        model: options.database.shop,
+        as: 'shop',
+      },
+    ];
 
     const currentTenant = SequelizeRepository.getCurrentTenant(
       options,
@@ -601,8 +614,7 @@ export default class UserRepository {
       if (!user.fullName) {
         return user.email;
       }
-
-      return `${user.fullName} <${user.email}>`;
+      return `${user.fullName}`;
     };
 
     return users.map((user) => ({

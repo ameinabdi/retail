@@ -136,7 +136,7 @@ export default class TenantUserRepository {
         {
           tenantId,
           userId: id,
-          status: selectStatus('invited', []),
+          status: selectStatus('active', []),
           invitationToken: crypto
             .randomBytes(20)
             .toString('hex'),

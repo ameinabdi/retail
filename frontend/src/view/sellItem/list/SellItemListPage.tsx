@@ -6,6 +6,7 @@ import SellItemListToolbar from 'src/view/sellItem/list/SellItemListToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import TopbarWrapper from 'src/view/layout/styles/TopbarWrapper';
 
 const SellItemListPage = (props) => {
   return (
@@ -18,11 +19,13 @@ const SellItemListPage = (props) => {
       />
 
       <ContentWrapper>
+      <TopbarWrapper>
         <PageTitle>
           {i18n('entities.sellItem.list.title')}
         </PageTitle>
 
         <SellItemListToolbar />
+        </TopbarWrapper>
         <SellItemListFilter />
         <SellItemListTable />
       </ContentWrapper>

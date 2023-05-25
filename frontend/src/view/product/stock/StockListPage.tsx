@@ -17,6 +17,7 @@ const StockListPage = (props) => {
       />
 
       <ContentWrapper>
+        
         <PageTitle>
           {i18n('entities.stock.list.title')}
         </PageTitle>

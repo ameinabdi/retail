@@ -19,10 +19,43 @@ import FormWrapper, {
 } from 'src/view/shared/styles/FormWrapper';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import InputFormItem from 'src/view/shared/form/items/InputFormItem';
+import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocompleteFormItem';
 
 const schema = yup.object().shape({
   roles: yupFormSchemas.stringArray(
     i18n('user.fields.roles'),
+  ),
+  fullName: yupFormSchemas.string(
+    i18n('user.fields.fullName'),
+    {
+      "required": true
+    },
+  ),
+  password: yupFormSchemas.string(
+    i18n('user.fields.password'),
+    {
+    },
+  ),
+  phoneNumber: yupFormSchemas.string(
+    i18n('user.fields.phoneNumber'),
+    {},
+  ),
+  shop: yupFormSchemas.relationToOne(
+    i18n('user.fields.shop'),
+    {},
+  ),
+  basicSalary: yupFormSchemas.decimal(
+    i18n('user.fields.basicSalary'),
+    {
+      "scale": 2
+    },
+  ),
+  allowanceSalary: yupFormSchemas.decimal(
+    i18n('user.fields.allowanceSalary'),
+    {
+      "scale": 2
+    },
   ),
 });
 
@@ -60,13 +93,34 @@ const UserEditForm = (props) => {
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Form.Item
-            {...formItemLayout}
+          <InputFormItem
+            name="fullName"
+            label={i18n('user.fields.fullName')}  
+            required={true}
+            layout={formItemLayout}
+            autoFocus
+          />
+            <InputFormItem
+            name="email"
             label={i18n('user.fields.email')}
-          >
-            <strong>{props.user.email}</strong>
-          </Form.Item>
-
+            required={false}
+            layout={formItemLayout}
+            value={props.user.email}
+            disabled
+          />
+          <InputFormItem
+            name="password"
+            label={i18n('user.fields.password')}  
+            required={true}
+            layout={formItemLayout}
+            autoFocus
+          />
+          <InputFormItem
+            name="phoneNumber"
+            label={i18n('user.fields.phoneNumber')}  
+            required={false}
+            layout={formItemLayout}
+          />
           <SelectFormItem
             name="roles"
             label={i18n('user.fields.roles')}
@@ -77,7 +131,25 @@ const UserEditForm = (props) => {
             mode="multiple"
             layout={formItemLayout}
           />
-
+          <InputFormItem
+            name="basicSalary"
+            label={i18n('user.fields.basicSalary')}  
+            required={false}
+            layout={formItemLayout}
+          />
+          <InputFormItem
+            name="allowanceSalary"
+            label={i18n('user.fields.allowanceSalary')}  
+            required={false}
+            layout={formItemLayout}
+          />
+          <ShopAutocompleteFormItem
+            name="shop"
+            label={i18n('user.fields.shop')}
+            required={false}
+            showCreate={!props.modal}
+            layout={formItemLayout}
+          />
           <Form.Item
             className="form-buttons"
             {...tailFormItemLayout}

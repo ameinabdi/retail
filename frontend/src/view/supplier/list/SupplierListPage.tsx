@@ -6,6 +6,7 @@ import SupplierListToolbar from 'src/view/supplier/list/SupplierListToolbar';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import TopbarWrapper from 'src/view/layout/styles/TopbarWrapper';
 
 const SupplierListPage = (props) => {
   return (
@@ -18,11 +19,12 @@ const SupplierListPage = (props) => {
       />
 
       <ContentWrapper>
-        <PageTitle>
-          {i18n('entities.supplier.list.title')}
-        </PageTitle>
-
-        <SupplierListToolbar />
+        <TopbarWrapper>
+          <PageTitle>
+            {i18n('entities.supplier.list.title')}
+          </PageTitle>
+         <SupplierListToolbar />
+        </TopbarWrapper>
         <SupplierListFilter />
         <SupplierListTable />
       </ContentWrapper>

@@ -5,6 +5,9 @@ import SequelizeRepository from '../../database/repositories/sequelizeRepository
 import TenantUserRepository from '../../database/repositories/tenantUserRepository';
 import { tenantSubdomain } from '../tenantSubdomain';
 import { IServiceOptions } from '../IServiceOptions';
+import bcrypt from 'bcrypt';
+const BCRYPT_SALT_ROUNDS = 12;
+
 export default class UserCreator {
   options: IServiceOptions;
   transaction;
@@ -89,6 +92,10 @@ export default class UserCreator {
    * If the user already exists, it only adds the role to the user.
    */
   async _addOrUpdate(email) {
+    const hashedPassword = await bcrypt.hash(
+      this.data.password,
+      BCRYPT_SALT_ROUNDS,
+    );
     let user = await UserRepository.findByEmailWithoutAvatar(
       email,
       {
@@ -99,7 +106,11 @@ export default class UserCreator {
 
     if (!user) {
       user = await UserRepository.create(
-        { email },
+        { 
+          email,
+          ...this.data,
+          password:hashedPassword
+        },
         {
           ...this.options,
           transaction: this.transaction,

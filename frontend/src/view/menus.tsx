@@ -12,7 +12,9 @@ import {
   TeamOutlined,
   NumberOutlined,
   ImportOutlined,
-  ExportOutlined
+  ExportOutlined,
+  SolutionOutlined,
+  BookOutlined
 } from '@ant-design/icons';
 
 const permissions = Permissions.values;
@@ -89,6 +91,23 @@ export default [
     icon: <ImportOutlined />,
     label: i18n('entities.receiptVoucher.menu'),
     type: 'Accountant',
+  },
+  {
+    path: '/advance',
+    permissionRequired: permissions.advanceRead,
+    icon: <BookOutlined />,
+    label: i18n('entities.advance.menu'),
+    type: 'Accountant',
+
+  },
+
+  {
+    path: '/salary',
+    permissionRequired: permissions.salaryRead,
+    icon: <SolutionOutlined />,
+    label: i18n('entities.salary.menu'),
+    type: 'Accountant',
+
   },
   {
     path: '/supplier',
