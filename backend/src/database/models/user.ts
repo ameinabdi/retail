@@ -204,5 +204,9 @@ function trimStringFields(user) {
     ? user.lastName.trim()
     : null;
 
+  user.fullName = user.fullName
+    ? user.fullName.trim()
+    : null;
+
   return user;
 }

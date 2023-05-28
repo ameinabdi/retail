@@ -5,6 +5,7 @@ import SequelizeFilterUtils from '../../database/utils/sequelizeFilterUtils';
 import Error404 from '../../errors/Error404';
 import Sequelize from 'sequelize';
 import { IRepositoryOptions } from './IRepositoryOptions';
+import allbook from './allbookone'
 
 const Op = Sequelize.Op;
 
@@ -413,6 +414,68 @@ class PurchaseRepository {
       },
     );
   }
+  // static async findAndCountAll(
+  //   { filter, limit = 0, offset = 0, orderBy = '' },
+  //   options: IRepositoryOptions,
+  // ) {
+  //   const tenant = SequelizeRepository.getCurrentTenant(
+  //     options,
+  //   );
+  //   const currentUser = SequelizeRepository.getCurrentUser(
+  //     options,
+  //   );
+  //   const productregistration = allbook.map((item)=>{
+  //     const transaction = SequelizeRepository.getTransaction(
+  //       options,
+  //     );
+  //     const record =  options.database.product.create(
+  //       {
+  //         ...lodash.pick(item, [
+  //           'importHash',
+  //         ]),
+  //         'productName':item.Products,
+  //         'productSerialNumber':item.Code,
+  //         'productQuantity': item.Quantity,
+  //         'productPrice':item.costPrice,
+  //         'purchaseDate':new Date(),
+  //         shopId:"4c969f30-dcf4-4754-bbe6-d2df0ef3d838",
+  //         tenantId: tenant.id,
+  //         createdById: currentUser.id,
+  //         updatedById: currentUser.id,
+  //       },
+  //       {
+  //         transaction,
+  //       },
+  //     );
+  //     return record
+  //   })
+  //   Promise.all(productregistration)
+  //   .then((records) => {
+  //     // Handle the result
+  //     const fullpurchase = {
+  //       totalAmount:lodash.sumBy(allbook,(item)=>{ return item.totalPrice}),
+  //       paidAmount:lodash.sumBy(allbook,(item)=>{ return item.totalPrice}),
+  //       balanceAmount:0,
+  //       purchaseDate: new Date(),
+  //       purchaseDatails: 'WAA HAL MARKA MARKII LASOOGALAYEY',
+  //       supplier: "ada88d9c-76c8-45d3-af4d-0df3be02d3cf",
+  //       shop: "4c969f30-dcf4-4754-bbe6-d2df0ef3d838",
+  //       Items:records.map((item)=>({
+  //         product:item.id,
+  //         costPrice:item.productPrice,
+  //         quantity:item.productQuantity,
+  //         sellingPrice:item.productPrice,
+  //         purchaseDate: new Date()
+  //       }))
+  //     }
+  //     this.create(fullpurchase, options)
+  //   })
+  //   .catch((error) => {
+  //     // Handle any errors
+  //     console.error(error);
+  //   });
+
+  // }
 
   static async findAndCountAll(
     { filter, limit = 0, offset = 0, orderBy = '' },

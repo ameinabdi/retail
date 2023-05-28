@@ -23,6 +23,11 @@ export default (app) => {
     `/tenant/:tenantId/user/autocomplete`,
     require('./userAutocomplete').default,
   );
+
+  app.get(
+    `/tenant/:tenantId/user-salary/autocomplete`,
+    require('./userAutocompleteSalary').default,
+  );
   app.get(
     `/tenant/:tenantId/user/:id`,
     require('./userFind').default,

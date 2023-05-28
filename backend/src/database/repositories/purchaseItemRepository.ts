@@ -290,6 +290,14 @@ class PurchaseItemRepository {
         });
       }
 
+      if (filter.purchase) {
+        whereAnd.push({
+          ['purchaseId']: SequelizeFilterUtils.uuid(
+            filter.purchase,
+          ),
+        });
+      }
+
       if (filter.itemName) {
         whereAnd.push(
           SequelizeFilterUtils.ilikeIncludes(

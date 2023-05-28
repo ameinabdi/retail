@@ -582,12 +582,12 @@ export default class UserRepository {
             ['id']: SequelizeFilterUtils.uuid(query),
           },
           SequelizeFilterUtils.ilikeIncludes(
-            'user',
+            'employee',
             'fullName',
             query,
           ),
           SequelizeFilterUtils.ilikeIncludes(
-            'user',
+            'employee',
             'email',
             query,
           ),
@@ -620,6 +620,75 @@ export default class UserRepository {
     return users.map((user) => ({
       id: user.id,
       label: buildText(user),
+     }));
+  }
+
+  static async findAllAutocompleteWithSalary(
+    query,
+    limit,
+    options: IRepositoryOptions,
+  ) {
+    const currentTenant = SequelizeRepository.getCurrentTenant(
+      options,
+    );
+
+    let whereAnd: Array<any> = [];
+    let include = [
+      {
+        model: options.database.tenantUser,
+        as: 'tenants',
+        where: {
+          ['tenantId']: currentTenant.id,
+        },
+      },
+    ];
+
+    if (query) {
+      whereAnd.push({
+        [Op.or]: [
+          {
+            ['id']: SequelizeFilterUtils.uuid(query),
+          },
+          SequelizeFilterUtils.ilikeIncludes(
+            'employee',
+            'fullName',
+            query,
+          ),
+          SequelizeFilterUtils.ilikeIncludes(
+            'employee',
+            'email',
+            query,
+          ),
+        ],
+      });
+    }
+
+    const where = { [Op.and]: whereAnd };
+
+    let users = await options.database.employee.findAll({
+      attributes: ['id', 'fullName', 'basicSalary','allowanceSalary','totalAdvance', 'totalpaid', 'totalBalance','email'],
+      where,
+      include,
+      limit: limit ? Number(limit) : undefined,
+      order: [['fullName', 'ASC']],
+    });
+
+    users = this._mapUserForTenantForRows(
+      users,
+      currentTenant,
+    );
+
+    const buildText = (user) => {
+      if (!user.fullName) {
+        return user.email;
+      }
+      return `${user.fullName}`;
+    };
+
+    return users.map((user) => ({
+      id: user.id,
+      label: buildText(user),
+      data:user
     }));
   }
 
@@ -864,6 +933,7 @@ export default class UserRepository {
           'id',
           'firstName',
           'lastName',
+          'fullName',
           'email',
         ]),
       );
@@ -873,6 +943,7 @@ export default class UserRepository {
       'id',
       'firstName',
       'lastName',
+      'fullName',
       'email',
     ]);
   }
@@ -1010,11 +1081,22 @@ export default class UserRepository {
     // If the user is only invited,
     // tenant members can only see its email
     const otherData = status === 'active' ? user : {};
+    const totalAdvance = user.totalAdvance || 0.00
+    const totalpaid = user.totalpaid || 0.00
+    const allowanceSalary = user.allowanceSalary || 0.00
+    const basicSalary = user.basicSalary || 0.00
+    const totalBalance = user.totalBalance || 0.00
 
     return {
       ...otherData,
       id: user.id,
+      fullName: user.fullName,
       email: user.email,
+      totalAdvance,
+      totalpaid,
+      basicSalary,
+      allowanceSalary,
+      totalBalance,
       roles,
       status,
     };
