@@ -168,7 +168,6 @@ const PurchaseForm = (props) => {
       balanceAmount:totalAmount-parseFloat(form.watch('paidAmount')),
       Items
     }
-    console.log('sssss', updatedValue)
     props.onSubmit(props?.record?.id, updatedValue);  
   };
 

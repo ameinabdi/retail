@@ -4,9 +4,10 @@ import ViewWrapper, {
   viewItemLayout,
 } from 'src/view/shared/styles/ViewWrapper';
 import { i18n } from 'src/i18n';
-import { Form } from 'antd';
+import { Form,Col, Row, Card, } from 'antd';
 import CustomerViewItem from 'src/view/customer/view/CustomerViewItem';
 import ShopViewItem from 'src/view/shop/view/ShopViewItem';
+import SellItemListTableitem from 'src/view/sellItem/list/SellItemListTableitem';
 
 const SellView = (props) => {
   const { record, loading } = props;
@@ -14,9 +15,21 @@ const SellView = (props) => {
   if (loading || !record) {
     return <Spinner />;
   }
+  const columnsResponsiveProps = {
+    xs: 24,
+    sm: 24,
+    md: 6,
+    lg: 6,
+    xl: 6,
+    style: {
+      marginBottom: 24,
+    },
+  };
 
   return (
     <ViewWrapper>
+      <Row gutter={16}>
+      <Col {...columnsResponsiveProps}>
       {Boolean(record.customer) && (
           <Form.Item
             {...viewItemLayout}
@@ -25,7 +38,8 @@ const SellView = (props) => {
             <CustomerViewItem value={record.customer} />
           </Form.Item>
         )}
-
+      </Col>
+      <Col {...columnsResponsiveProps}>
       {Boolean(record.sellDate) && (
         <Form.Item
           {...viewItemLayout}
@@ -34,7 +48,8 @@ const SellView = (props) => {
           {record.sellDate}
         </Form.Item>
       )}
-
+      </Col>
+      <Col {...columnsResponsiveProps}>
       {Boolean(record.sellDetails) && (
         <Form.Item
           {...viewItemLayout}
@@ -43,7 +58,8 @@ const SellView = (props) => {
           {record.sellDetails}
         </Form.Item>
       )}
-
+      </Col>
+      <Col {...columnsResponsiveProps}> 
       {(Boolean(record.totalAmount) || record.totalAmount === 0) && (
           <Form.Item
             {...viewItemLayout}
@@ -52,7 +68,8 @@ const SellView = (props) => {
             {Number(record.totalAmount).toFixed(2)}
           </Form.Item>
         )}
-
+      </Col>
+      <Col {...columnsResponsiveProps}> 
       {(Boolean(record.paidAmount) || record.paidAmount === 0) && (
           <Form.Item
             {...viewItemLayout}
@@ -61,7 +78,8 @@ const SellView = (props) => {
             {Number(record.paidAmount).toFixed(2)}
           </Form.Item>
         )}
-
+      </Col>
+      <Col {...columnsResponsiveProps}> 
       {(Boolean(record.balanceAmount) || record.balanceAmount === 0) && (
           <Form.Item
             {...viewItemLayout}
@@ -70,7 +88,8 @@ const SellView = (props) => {
             {Number(record.balanceAmount).toFixed(2)}
           </Form.Item>
         )}
-
+      </Col>
+      <Col {...columnsResponsiveProps}> 
       {Boolean(record.shop) && (
           <Form.Item
             {...viewItemLayout}
@@ -79,6 +98,11 @@ const SellView = (props) => {
             <ShopViewItem value={record.shop} />
           </Form.Item>
         )}
+          </Col>
+        </Row>
+        <Card>
+        <SellItemListTableitem sell={record} />
+      </Card>
     </ViewWrapper>
   );
 };

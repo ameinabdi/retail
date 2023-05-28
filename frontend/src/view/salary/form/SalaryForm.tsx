@@ -3,7 +3,7 @@ import {
   SaveOutlined,
   UndoOutlined,
 } from '@ant-design/icons';
-import { Button, Form } from 'antd';
+import { Button, Form, Col, Row,  } from 'antd';
 import { useForm, FormProvider } from 'react-hook-form';
 import React, { useState } from 'react';
 import { i18n } from 'src/i18n';
@@ -15,16 +15,20 @@ import * as yup from 'yup';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import UserAutocompleteFormItem from 'src/view/user/autocomplete/UserAutocompleteFormItem';
+import UserAutocompleteFormItem from 'src/view/user/autocomplete/UserAutocompleteFormItemWithSalary';
 import moment from 'moment';
 import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
 import AccountsAutocompleteFormItem from 'src/view/accounts/autocomplete/AccountsAutocompleteFormItem';
 import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocompleteFormItem';
+import InputNumberFormItem from 'src/view/shared/form/items/InputNumberFormItem';
+import BigNumber from 'bignumber.js';
 
 const schema = yup.object().shape({
   employee: yupFormSchemas.relationToOne(
     i18n('entities.salary.fields.employee'),
-    {},
+    {
+      "required": true
+    },
   ),
   basicSalary: yupFormSchemas.decimal(
     i18n('entities.salary.fields.basicSalary'),
@@ -70,7 +74,9 @@ const schema = yup.object().shape({
   ),
   account: yupFormSchemas.relationToOne(
     i18n('entities.salary.fields.account'),
-    {},
+    {
+      "required": true
+    },
   ),
   salaryDate: yupFormSchemas.date(
     i18n('entities.salary.fields.salaryDate'),
@@ -80,7 +86,9 @@ const schema = yup.object().shape({
   ),
   shop: yupFormSchemas.relationToOne(
     i18n('entities.salary.fields.shop'),
-    {},
+    {
+      "required": true
+    },
   ),
 });
 
@@ -115,85 +123,142 @@ const SalaryForm = (props) => {
     });
   };
 
-  const onSubmit = (values) => {
-    props.onSubmit(props?.record?.id, values);
-  };
+  const employe = form.getValues('employee')?.data
+  const totalSalary:any = parseFloat(employe?.basicSalary)+parseFloat(employe?.allowanceSalary)
+  const advance:any = BigNumber(employe?.totalBalance).toFixed(2)
+  const netSalary:any = (totalSalary)-(advance)
+  const balance = (netSalary)-parseFloat(form.getValues('paidSalary'))
 
+  const onSubmit = (values) => {
+    const updatedValue = {
+      ...values,
+      basicSalary:employe?.basicSalary,
+      allowanceSalary:employe?.allowanceSalary,
+      totalSalary,
+      advance,
+      netSalary,
+      balance
+    }
+    props.onSubmit(props?.record?.id, updatedValue);
+  };
+  const ColumnsResponsiveProps = {
+    xs: 24,
+    sm: 24,
+    md: 6,
+    lg: 6,
+    xl: 6,
+    style: {
+      marginBottom: 24,
+    },
+  };
   const { saveLoading } = props;
   return (
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
+        <Row gutter={16}>
+         <Col {...ColumnsResponsiveProps}>
           <UserAutocompleteFormItem  
             name="employee"
             label={i18n('entities.salary.fields.employee')}
-            required={false}
-            showCreate={!props.modal}
+            required={true}
             layout={formItemLayout}
           />
+          </Col>
+          <Col {...ColumnsResponsiveProps}>
           <InputFormItem
             name="basicSalary"
             label={i18n('entities.salary.fields.basicSalary')}  
             required={false}
             layout={formItemLayout}
+            value={employe?.basicSalary}
+            disabled
           />
+           </Col>
+          <Col {...ColumnsResponsiveProps}>
           <InputFormItem
             name="allowanceSalary"
             label={i18n('entities.salary.fields.allowanceSalary')}  
             required={false}
             layout={formItemLayout}
+            value={employe?.allowanceSalary}
+            disabled
+
           />
+           </Col>
+          <Col {...ColumnsResponsiveProps}> 
           <InputFormItem
             name="totalSalary"
             label={i18n('entities.salary.fields.totalSalary')}  
             required={false}
             layout={formItemLayout}
-          />
+            value={totalSalary}
+            disabled
+         />
+           </Col>
+          <Col {...ColumnsResponsiveProps}> 
           <InputFormItem
             name="advance"
             label={i18n('entities.salary.fields.advance')}  
             required={false}
             layout={formItemLayout}
+            value={advance}
+            disabled
           />
+           </Col>
+          <Col {...ColumnsResponsiveProps}> 
           <InputFormItem
             name="netSalary"
             label={i18n('entities.salary.fields.netSalary')}  
             required={false}
             layout={formItemLayout}
+            value={netSalary}
+            disabled
           />
-          <InputFormItem
+           </Col>
+          <Col {...ColumnsResponsiveProps}> 
+          <InputNumberFormItem
             name="paidSalary"
             label={i18n('entities.salary.fields.paidSalary')}  
             required={false}
             layout={formItemLayout}
           />
+           </Col>
+          <Col {...ColumnsResponsiveProps}> 
           <InputFormItem
             name="balance"
             label={i18n('entities.salary.fields.balance')}  
             required={false}
             layout={formItemLayout}
+            value={balance}
+            disabled
           />
+           </Col>
+          <Col {...ColumnsResponsiveProps}> 
           <AccountsAutocompleteFormItem  
             name="account"
             label={i18n('entities.salary.fields.account')}
             required={false}
-            showCreate={!props.modal}
             layout={formItemLayout}
           />
+           </Col>
+          <Col {...ColumnsResponsiveProps}> 
           <DatePickerFormItem
             name="salaryDate"
             label={i18n('entities.salary.fields.salaryDate')}
             required={true}
             layout={formItemLayout}
           />
+           </Col>
+          <Col {...ColumnsResponsiveProps}>
           <ShopAutocompleteFormItem  
             name="shop"
             label={i18n('entities.salary.fields.shop')}
             required={false}
-            showCreate={!props.modal}
             layout={formItemLayout}
           />
-
+          </Col>
+          </Row>
           <Form.Item
             className="form-buttons"
             {...tailFormItemLayout}

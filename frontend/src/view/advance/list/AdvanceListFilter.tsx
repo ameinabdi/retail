@@ -18,8 +18,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
-import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
 import UserAutocompleteFormItem from 'src/view/user/autocomplete/UserAutocompleteFormItem';
 import DatePickerRangeFormItem from 'src/view/shared/form/items/DatePickerRangeFormItem';
 import AccountsAutocompleteFormItem from 'src/view/accounts/autocomplete/AccountsAutocompleteFormItem';
@@ -153,20 +151,6 @@ const AdvanceListFilter = (props) => {
                   <UserAutocompleteFormItem  
                     name="employee"
                     label={i18n('entities.advance.fields.employee')}        
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="amountRange"
-                    label={i18n('entities.advance.fields.amountRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputFormItem
-                    name="note"
-                    label={i18n('entities.advance.fields.note')}      
                     layout={filterItemLayout}
                   />
                 </Col>

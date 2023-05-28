@@ -79,6 +79,9 @@ const selectPagination = createSelector(
       ...raw.pagination,
       total: count,
       showSizeChanger: true,
+      pageSizeOptions:[
+        10, 20, 50, 100,500, count > 500 ? count : 1000 
+      ]
     };
   },
 );

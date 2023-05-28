@@ -18,7 +18,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
-import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
 import UserAutocompleteFormItem from 'src/view/user/autocomplete/UserAutocompleteFormItem';
 import DatePickerRangeFormItem from 'src/view/shared/form/items/DatePickerRangeFormItem';
 import AccountsAutocompleteFormItem from 'src/view/accounts/autocomplete/AccountsAutocompleteFormItem';
@@ -192,55 +191,6 @@ const SalaryListFilter = (props) => {
                   <UserAutocompleteFormItem  
                     name="employee"
                     label={i18n('entities.salary.fields.employee')}        
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="basicSalaryRange"
-                    label={i18n('entities.salary.fields.basicSalaryRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="allowanceSalaryRange"
-                    label={i18n('entities.salary.fields.allowanceSalaryRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="totalSalaryRange"
-                    label={i18n('entities.salary.fields.totalSalaryRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="advanceRange"
-                    label={i18n('entities.salary.fields.advanceRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="netSalaryRange"
-                    label={i18n('entities.salary.fields.netSalaryRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="paidSalaryRange"
-                    label={i18n('entities.salary.fields.paidSalaryRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="balanceRange"
-                    label={i18n('entities.salary.fields.balanceRange')}      
                     layout={filterItemLayout}
                   />
                 </Col>

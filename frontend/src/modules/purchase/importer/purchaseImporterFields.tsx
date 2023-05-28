@@ -3,6 +3,44 @@ import { i18n } from 'src/i18n';import moment from 'moment';
 
 export default [
   {
+    name: 'productName',
+    label: i18n('entities.product.fields.productName'),
+    schema: schemas.string(
+      i18n('entities.product.fields.productName'),
+      {
+        "required": true
+      },
+    ),
+  },
+  {
+    name: 'productSerialNumber',
+    label: i18n('entities.product.fields.productSerialNumber'),
+    schema: schemas.string(
+      i18n('entities.product.fields.productSerialNumber'),
+      {},
+    ),
+  },
+  {
+    name: 'productQuantity',
+    label: i18n('entities.product.fields.productQuantity'),
+    schema: schemas.integer(
+      i18n('entities.product.fields.productQuantity'),
+      {
+        "required": true
+      },
+    ),
+  },
+  {
+    name: 'productPrice',
+    label: i18n('entities.product.fields.productPrice'),
+    schema: schemas.decimal(
+      i18n('entities.product.fields.productPrice'),
+      {
+        "scale": 2
+      },
+    ),
+  },
+  {
     name: 'supplier',
     label: i18n('entities.purchase.fields.supplier'),
     schema: schemas.relationToOne(
@@ -21,26 +59,6 @@ export default [
     ),
   },
   {
-    name: 'paidAmount',
-    label: i18n('entities.purchase.fields.paidAmount'),
-    schema: schemas.decimal(
-      i18n('entities.purchase.fields.paidAmount'),
-      {
-        "scale": 2
-      },
-    ),
-  },
-  {
-    name: 'balanceAmount',
-    label: i18n('entities.purchase.fields.balanceAmount'),
-    schema: schemas.decimal(
-      i18n('entities.purchase.fields.balanceAmount'),
-      {
-        "scale": 2
-      },
-    ),
-  },
-  {
     name: 'purchaseDate',
     label: i18n('entities.purchase.fields.purchaseDate'),
     schema: schemas.datetime(
@@ -48,14 +66,6 @@ export default [
       {},
     ),
    render: (value) => value && value instanceof Date ? moment(value).format('YYYY-MM-DD HH:mm') : value,
-  },
-  {
-    name: 'purchaseDatails',
-    label: i18n('entities.purchase.fields.purchaseDatails'),
-    schema: schemas.string(
-      i18n('entities.purchase.fields.purchaseDatails'),
-      {},
-    ),
   },
   {
     name: 'shop',

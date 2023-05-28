@@ -34,7 +34,10 @@ const en = {
     report: {
       sellReport:{
         menu:'Sells Report'
-      }  
+      }, 
+      purchaseReport:{
+        menu:'Purchases Report'
+      } 
      },
     shop: {
         name: 'shop',

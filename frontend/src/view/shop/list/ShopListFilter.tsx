@@ -19,9 +19,6 @@ import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
-import shopEnumerators from 'src/modules/shop/shopEnumerators';
-
 const schema = yup.object().shape({
   shopName: yupFilterSchemas.string(
     i18n('entities.shop.fields.shopName'),
@@ -141,28 +138,6 @@ const ShopListFilter = (props) => {
                   <InputFormItem
                     name="shopTelephone"
                     label={i18n('entities.shop.fields.shopTelephone')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <SelectFormItem
-                    name="shopCurrency"
-                    label={i18n('entities.shop.fields.shopCurrency')}
-                    options={shopEnumerators.shopCurrency.map(
-                      (value) => ({
-                        value,
-                        label: i18n(
-                          `entities.shop.enumerators.shopCurrency.${value}`,
-                        ),
-                      }),
-                    )}
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputFormItem
-                    name="shopAddress"
-                    label={i18n('entities.shop.fields.shopAddress')}      
                     layout={filterItemLayout}
                   />
                 </Col>

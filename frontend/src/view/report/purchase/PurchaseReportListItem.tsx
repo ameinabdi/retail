@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import selectors from 'src/modules/user/userSelectors';
+import { useSelector } from 'react-redux';
+import selectors from 'src/modules/purchaseItem/purchaseItemSelectors';
 
-const UserListItem = (props) => {
+const PurchaseItemListItem = (props) => {
   const hasPermissionToRead = useSelector(
     selectors.selectPermissionToRead,
   );
@@ -23,30 +23,18 @@ const UserListItem = (props) => {
     return [value];
   };
 
-  const label = (record) => {
-    if (!record) {
-      return null;
-    }
-
-    if (!record.fullName) {
-      return record.email;
-    }
-
-    return `${record.fullName}`;
-  };
-
   const displayableRecord = (record) => {
     if (hasPermissionToRead) {
       return (
         <div key={record.id}>
-          <Link to={`/user/${record.id}`}>
-            {label(record)}
+          <Link to={`/purchase-item/${record.id}`}>
+            {record.itemName}
           </Link>
         </div>
       );
     }
 
-    return <div key={record.id}>{label(record)}</div>;
+    return <div key={record.id}>{record.itemName}</div>;
   };
 
   if (!valueAsArray().length) {
@@ -62,8 +50,8 @@ const UserListItem = (props) => {
   );
 };
 
-UserListItem.propTypes = {
+PurchaseItemListItem.propTypes = {
   value: PropTypes.any,
 };
 
-export default UserListItem;
+export default PurchaseItemListItem;

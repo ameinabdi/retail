@@ -16,12 +16,12 @@ const ViewWrapper = styled.div`
 
 export const viewItemLayout = {
   labelCol: {
-    md: { span: 6 },
-    lg: { span: 4 },
+    md: { span: 24 },
+    lg: { span: 24 },
   },
   wrapperCol: {
-    md: { span: 18 },
-    lg: { span: 12 },
+    md: { span: 24 },
+    lg: { span: 24 },
   },
 };
 

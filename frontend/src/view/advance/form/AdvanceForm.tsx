@@ -25,12 +25,16 @@ import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocomplet
 const schema = yup.object().shape({
   employee: yupFormSchemas.relationToOne(
     i18n('entities.advance.fields.employee'),
-    {},
+    {
+      "required": true
+    },
   ),
   amount: yupFormSchemas.decimal(
     i18n('entities.advance.fields.amount'),
     {
-      "scale": 2
+      "scale": 2,
+      "required": true
+
     },
   ),
   note: yupFormSchemas.string(
@@ -39,15 +43,21 @@ const schema = yup.object().shape({
   ),
   advanceDate: yupFormSchemas.datetime(
     i18n('entities.advance.fields.advanceDate'),
-    {},
+    {
+      "required": true
+    },
   ),
   account: yupFormSchemas.relationToOne(
     i18n('entities.advance.fields.account'),
-    {},
+    {
+      "required": true
+    },
   ),
   shop: yupFormSchemas.relationToOne(
     i18n('entities.advance.fields.shop'),
-    {},
+    {
+      "required": true
+    },
   ),
 });
 
@@ -89,40 +99,40 @@ const AdvanceForm = (props) => {
           <UserAutocompleteFormItem  
             name="employee"
             label={i18n('entities.advance.fields.employee')}
-            required={false}
+            required={true}
             showCreate={!props.modal}
             layout={formItemLayout}
           />
           <InputFormItem
             name="amount"
             label={i18n('entities.advance.fields.amount')}  
-            required={false}
+            required={true}
             layout={formItemLayout}
           />
           <TextAreaFormItem
             name="note"
             label={i18n('entities.advance.fields.note')}  
-            required={false}
+            required={true}
             layout={formItemLayout}
           />
           <DatePickerFormItem
             name="advanceDate"
             label={i18n('entities.advance.fields.advanceDate')}
-            required={false}
+            required={true}
             showTime
             layout={formItemLayout}
           />
           <AccountsAutocompleteFormItem  
             name="account"
             label={i18n('entities.advance.fields.account')}
-            required={false}
+            required={true}
             showCreate={!props.modal}
             layout={formItemLayout}
           />
           <ShopAutocompleteFormItem  
             name="shop"
             label={i18n('entities.advance.fields.shop')}
-            required={false}
+            required={true}
             showCreate={!props.modal}
             layout={formItemLayout}
           />

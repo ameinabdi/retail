@@ -14,7 +14,8 @@ import {
   ImportOutlined,
   ExportOutlined,
   SolutionOutlined,
-  BookOutlined
+  BookOutlined,
+  TagsOutlined
 } from '@ant-design/icons';
 
 const permissions = Permissions.values;
@@ -63,12 +64,13 @@ export default [
     label: i18n('entities.product.menu'),
     type: 'Invertory',
   },
-  // {
-  //   path: '/accounts',
-  //   permissionRequired: permissions.accountsRead,
-  //   icon: <TagsOutlined />,
-  //   label: i18n('entities.accounts.menu'),
-  // },
+  {
+    path: '/accounts',
+    permissionRequired: permissions.accountsRead,
+    icon: <TagsOutlined />,
+    label: i18n('entities.accounts.menu'),
+    type: 'Accountant',
+  },
   {
     path: '/expense',
     permissionRequired: permissions.expenseRead,
@@ -136,6 +138,13 @@ export default [
     permissionRequired: permissions.userCreate,
     icon: <NumberOutlined />,
     label: i18n('entities.report.sellReport.menu'),
+    type: 'Report',
+  },
+  {
+    path: '/report/purchase',
+    permissionRequired: permissions.userCreate,
+    icon: <NumberOutlined />,
+    label: i18n('entities.report.purchaseReport.menu'),
     type: 'Report',
   },
   

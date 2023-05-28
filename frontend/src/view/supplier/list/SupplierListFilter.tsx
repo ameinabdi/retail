@@ -19,7 +19,6 @@ import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
 import SelectFormItem from 'src/view/shared/form/items/SelectFormItem';
 import supplierEnumerators from 'src/modules/supplier/supplierEnumerators';
 import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocompleteFormItem';
@@ -174,20 +173,6 @@ const SupplierListFilter = (props) => {
                   <InputFormItem
                     name="supplierTelephone"
                     label={i18n('entities.supplier.fields.supplierTelephone')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputFormItem
-                    name="supplierAddress"
-                    label={i18n('entities.supplier.fields.supplierAddress')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="initialBalanceRange"
-                    label={i18n('entities.supplier.fields.initialBalanceRange')}      
                     layout={filterItemLayout}
                   />
                 </Col>

@@ -21,7 +21,8 @@ export const InputFormItem = (props) => {
     addonAfter,
     hidden,
     value,
-    disabled
+    disabled,
+    min
   } = props;
 
   const {
@@ -78,7 +79,7 @@ export const InputFormItem = (props) => {
         addonAfter={addonAfter || undefined}
         hidden={hidden || undefined}
         disabled={disabled || undefined}
-
+        min={min || undefined}
       />
     </Form.Item>
   );
@@ -108,7 +109,8 @@ InputFormItem.propTypes = {
   addonAfter: PropTypes.any,
   hidden: PropTypes.bool,
   disabled: PropTypes.bool,
-  value:PropTypes.any
+  value:PropTypes.any,
+  min: PropTypes.any
 };
 
 export default InputFormItem;

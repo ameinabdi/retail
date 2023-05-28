@@ -1,4 +1,4 @@
-import { Table, Popconfirm } from 'antd';
+import { Table, Popconfirm,Drawer,Space,Button } from 'antd';
 import { i18n } from 'src/i18n';
 import actions from 'src/modules/sell/list/sellListActions';
 import destroyActions from 'src/modules/sell/destroy/sellDestroyActions';
@@ -14,6 +14,7 @@ import CustomerListItem from 'src/view/customer/list/CustomerListItem';
 import ShopListItem from 'src/view/shop/list/ShopListItem';
 import SellItemListItem from 'src/view/sellItem/list/SellItemListItem';
 import SellReportListTableItem from 'src/view/report/sells/SellReportListTableItem';
+import SellView from '../view/SellView';
 
 const SellListTable = (props) => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const SellListTable = (props) => {
     destroySelectors.selectLoading,
   );
   const loading = findLoading || destroyLoading;
+  const [visible, setVisible] =  React.useState(null);
 
   const rows = useSelector(selectors.selectRows);
   const pagination = useSelector(
@@ -37,6 +39,14 @@ const SellListTable = (props) => {
   const hasPermissionToDestroy = useSelector(
     sellSelectors.selectPermissionToDestroy,
   );
+
+  const doClose = () => {
+    setVisible(null);
+  };
+
+  const doOpen = (id) => {
+    setVisible(id);
+  };
 
   const handleTableChange = (
     pagination,
@@ -118,11 +128,12 @@ const SellListTable = (props) => {
       title: '',
       dataIndex: '',
       width: '160px',
+      fixed:'right',
       render: (_, record) => (
         <div className="table-actions">
-          <Link to={`/sell/${record.id}`}>
+          <Button onClick={()=>doOpen(record.id)} type="link">
             {i18n('common.view')}
-          </Link>
+          </Button>
           {hasPermissionToEdit && (
             <Link to={`/sell/${record.id}/edit`}>
               {i18n('common.edit')}
@@ -140,6 +151,23 @@ const SellListTable = (props) => {
               </ButtonLink>
             </Popconfirm>
           )}
+          <Drawer
+          title="View Purchase"
+          width={"70%"}
+          onClose={doClose}
+          visible={visible === null ? false : visible === record.id ? true : false}
+          bodyStyle={{ paddingBottom: 80 }}
+          /* @ts-ignore */
+          extra={
+            <Space>
+              <Button onClick={doClose} type="primary">
+                Cancel
+              </Button>
+            </Space>
+          }
+          >
+          <SellView loading={false} record={record} />
+        </Drawer>
         </div>
       ),
     },

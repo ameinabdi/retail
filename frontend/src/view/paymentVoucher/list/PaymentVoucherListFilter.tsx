@@ -18,8 +18,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
-import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
 import SupplierAutocompleteFormItem from 'src/view/supplier/autocomplete/SupplierAutocompleteFormItem';
 
 const schema = yup.object().shape({
@@ -142,34 +140,6 @@ const PaymentVoucherListFilter = (props) => {
                   <SupplierAutocompleteFormItem  
                     name="supplier"
                     label={i18n('entities.paymentVoucher.fields.supplier')}        
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="unPaidAmountRange"
-                    label={i18n('entities.paymentVoucher.fields.unPaidAmountRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="paidAmountRange"
-                    label={i18n('entities.paymentVoucher.fields.paidAmountRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="balanceAmountRange"
-                    label={i18n('entities.paymentVoucher.fields.balanceAmountRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputFormItem
-                    name="paymentNote"
-                    label={i18n('entities.paymentVoucher.fields.paymentNote')}      
                     layout={filterItemLayout}
                   />
                 </Col>

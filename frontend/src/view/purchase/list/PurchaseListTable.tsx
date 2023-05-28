@@ -1,4 +1,4 @@
-import { Table, Popconfirm } from 'antd';
+import { Table, Popconfirm,Drawer,Space,Button } from 'antd';
 import { i18n } from 'src/i18n';
 import actions from 'src/modules/purchase/list/purchaseListActions';
 import destroyActions from 'src/modules/purchase/destroy/purchaseDestroyActions';
@@ -13,6 +13,7 @@ import ButtonLink from 'src/view/shared/styles/ButtonLink';
 import moment from 'moment';
 import SupplierListItem from 'src/view/supplier/list/SupplierListItem';
 import ShopListItem from 'src/view/shop/list/ShopListItem';
+import PurchaseView from '../view/PurchaseView';
 
 const PurchaseListTable = (props) => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const PurchaseListTable = (props) => {
     destroySelectors.selectLoading,
   );
   const loading = findLoading || destroyLoading;
+  const [visible, setVisible] =  React.useState(null);
 
   const rows = useSelector(selectors.selectRows);
   const pagination = useSelector(
@@ -37,6 +39,13 @@ const PurchaseListTable = (props) => {
     purchaseSelectors.selectPermissionToDestroy,
   );
 
+  const doClose = () => {
+    setVisible(null);
+  };
+
+  const doOpen = (id) => {
+    setVisible(id);
+  };
   const handleTableChange = (
     pagination,
     filters,
@@ -112,11 +121,12 @@ const PurchaseListTable = (props) => {
       title: '',
       dataIndex: '',
       width: '160px',
+      fixed:'right',
       render: (_, record) => (
         <div className="table-actions">
-          <Link to={`/purchase/${record.id}`}>
+         <Button onClick={()=>doOpen(record.id)} type="link">
             {i18n('common.view')}
-          </Link>
+          </Button>
           {hasPermissionToEdit && (
             <Link to={`/purchase/${record.id}/edit`}>
               {i18n('common.edit')}
@@ -134,6 +144,23 @@ const PurchaseListTable = (props) => {
               </ButtonLink>
             </Popconfirm>
           )}
+           <Drawer
+          title="View Purchase"
+          width={"70%"}
+          onClose={doClose}
+          visible={visible === null ? false : visible === record.id ? true : false}
+          bodyStyle={{ paddingBottom: 80 }}
+          /* @ts-ignore */
+          extra={
+            <Space>
+              <Button onClick={doClose} type="primary">
+                Cancel
+              </Button>
+            </Space>
+          }
+          >
+          <PurchaseView loading={false} record={record} />
+        </Drawer>
         </div>
       ),
     },

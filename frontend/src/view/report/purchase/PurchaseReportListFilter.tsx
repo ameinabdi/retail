@@ -7,8 +7,8 @@ import { useForm, FormProvider } from 'react-hook-form';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { i18n } from 'src/i18n';
-import actions from 'src/modules/expense/list/expenseListActions';
-import selectors from 'src/modules/expense/list/expenseListSelectors';
+import actions from 'src/modules/purchaseItem/list/purchaseItemListActions';
+import selectors from 'src/modules/purchaseItem/list/purchaseItemListSelectors';
 import FilterWrapper, {
   filterItemLayout,
 } from 'src/view/shared/styles/FilterWrapper';
@@ -18,60 +18,35 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
-import DatePickerRangeFormItem from 'src/view/shared/form/items/DatePickerRangeFormItem';
-import SupplierAutocompleteFormItem from 'src/view/supplier/autocomplete/SupplierAutocompleteFormItem';
+import ProductAutocompleteFormItem from 'src/view/product/autocomplete/ProductAutocompleteFormItem';
 import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocompleteFormItem';
 
 const schema = yup.object().shape({
-  supplier: yupFilterSchemas.relationToOne(
-    i18n('entities.expense.fields.supplier'),
-  ),
-  description: yupFilterSchemas.string(
-    i18n('entities.expense.fields.description'),
-  ),
-  amountRange: yupFilterSchemas.decimalRange(
-    i18n('entities.expense.fields.amountRange'),
-  ),
-  expenseDateRange: yupFilterSchemas.dateRange(
-    i18n('entities.expense.fields.expenseDateRange'),
+  product: yupFilterSchemas.relationToOne(
+    i18n('entities.purchaseItem.fields.product'),
   ),
   shop: yupFilterSchemas.relationToOne(
-    i18n('entities.expense.fields.shop'),
+    i18n('entities.purchaseItem.fields.shop'),
   ),
 });
 
 const emptyValues = {
-  supplier: null,
-  description: null,
-  amountRange: [],
-  expenseDateRange: [],
+  product: null,
   shop: null,
 }
 
 const previewRenders = {
-  supplier: {
-      label: i18n('entities.expense.fields.supplier'),
+  product: {
+      label: i18n('entities.purchaseItem.fields.product'),
       render: filterRenders.relationToOne(),
     },
-  description: {
-    label: i18n('entities.expense.fields.description'),
-    render: filterRenders.generic(),
-  },
-  amountRange: {
-    label: i18n('entities.expense.fields.amountRange'),
-    render: filterRenders.decimalRange(2),
-  },
-  expenseDateRange: {
-    label: i18n('entities.expense.fields.expenseDateRange'),
-    render: filterRenders.dateRange(),
-  },
   shop: {
-      label: i18n('entities.expense.fields.shop'),
+      label: i18n('entities.purchaseItem.fields.shop'),
       render: filterRenders.relationToOne(),
     },
 }
 
-const ExpenseListFilter = (props) => {
+const PurchaseItemListFilter = (props) => {
   const dispatch = useDispatch();
   const rawFilter = useSelector(selectors.selectRawFilter);
   const [expanded, setExpanded] = useState(false);
@@ -139,23 +114,16 @@ const ExpenseListFilter = (props) => {
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <Row gutter={24}>
                 <Col xs={24} md={24} lg={12}>
-                  <SupplierAutocompleteFormItem  
-                    name="supplier"
-                    label={i18n('entities.expense.fields.supplier')}        
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <DatePickerRangeFormItem
-                    name="expenseDateRange"
-                    label={i18n('entities.expense.fields.expenseDateRange')}    
+                  <ProductAutocompleteFormItem  
+                    name="product"
+                    label={i18n('entities.purchaseItem.fields.product')}        
                     layout={filterItemLayout}
                   />
                 </Col>
                 <Col xs={24} md={24} lg={12}>
                   <ShopAutocompleteFormItem  
                     name="shop"
-                    label={i18n('entities.expense.fields.shop')}        
+                    label={i18n('entities.purchaseItem.fields.shop')}        
                     layout={filterItemLayout}
                   />
                 </Col>
@@ -187,4 +155,4 @@ const ExpenseListFilter = (props) => {
   );
 };
 
-export default ExpenseListFilter;
+export default PurchaseItemListFilter;

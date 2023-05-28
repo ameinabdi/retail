@@ -18,8 +18,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
-import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
 import DatePickerRangeFormItem from 'src/view/shared/form/items/DatePickerRangeFormItem';
 import CustomerAutocompleteFormItem from 'src/view/customer/autocomplete/CustomerAutocompleteFormItem';
 import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocompleteFormItem';
@@ -167,34 +165,6 @@ const SellListFilter = (props) => {
                   <DatePickerRangeFormItem
                     name="sellDateRange"
                     label={i18n('entities.sell.fields.sellDateRange')}    
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputFormItem
-                    name="sellDetails"
-                    label={i18n('entities.sell.fields.sellDetails')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="totalAmountRange"
-                    label={i18n('entities.sell.fields.totalAmountRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="paidAmountRange"
-                    label={i18n('entities.sell.fields.paidAmountRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="balanceAmountRange"
-                    label={i18n('entities.sell.fields.balanceAmountRange')}      
                     layout={filterItemLayout}
                   />
                 </Col>

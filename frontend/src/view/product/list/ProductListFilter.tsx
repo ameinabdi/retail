@@ -19,8 +19,6 @@ import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
-import DatePickerRangeFormItem from 'src/view/shared/form/items/DatePickerRangeFormItem';
 import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocompleteFormItem';
 
 const schema = yup.object().shape({
@@ -150,21 +148,6 @@ const ProductListFilter = (props) => {
                   <InputFormItem
                     name="productSerialNumber"
                     label={i18n('entities.product.fields.productSerialNumber')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="productPriceRange"
-                    label={i18n('entities.product.fields.productPriceRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <DatePickerRangeFormItem
-                    name="purchaseDateRange"
-                    label={i18n('entities.product.fields.purchaseDateRange')}    
-                    showTime
                     layout={filterItemLayout}
                   />
                 </Col>

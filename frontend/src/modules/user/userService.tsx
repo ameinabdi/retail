@@ -111,4 +111,21 @@ export default class UserService {
     );
     return response.data;
   }
+
+  static async fetchUserAutocompleteWithSalary(query, limit) {
+    const params = {
+      query,
+      limit,
+    };
+
+    const tenantId = AuthCurrentTenant.get();
+
+    const response = await authAxios.get(
+      `/tenant/${tenantId}/user-salary/autocomplete`,
+      {
+        params,
+      },
+    );
+    return response.data;
+  }
 }

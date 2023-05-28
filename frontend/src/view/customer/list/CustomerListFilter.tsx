@@ -19,7 +19,6 @@ import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
 import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocompleteFormItem';
 
 const schema = yup.object().shape({
@@ -141,13 +140,6 @@ const CustomerListFilter = (props) => {
                   <InputFormItem
                     name="telephone"
                     label={i18n('entities.customer.fields.telephone')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="initialBalanceRange"
-                    label={i18n('entities.customer.fields.initialBalanceRange')}      
                     layout={filterItemLayout}
                   />
                 </Col>

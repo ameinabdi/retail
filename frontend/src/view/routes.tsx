@@ -344,6 +344,15 @@ const privateRoutes = [
     exact: true,
   },
   {
+    path: '/report/purchase',
+    loader: () =>
+      import('src/view/report/purchase/PurchaseReportListPage'),
+    permissionRequired: permissions.sellRead,
+    exact: true,
+  },
+
+
+  {
     path: '/sell',
     loader: () =>
       import('src/view/sell/list/SellListPage'),

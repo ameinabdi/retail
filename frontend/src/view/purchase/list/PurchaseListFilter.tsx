@@ -18,8 +18,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import FilterPreview from 'src/view/shared/filter/FilterPreview';
 import filterRenders from 'src/modules/shared/filter/filterRenders';
 import { Collapse } from 'antd';
-import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import InputRangeFormItem from 'src/view/shared/form/items/InputRangeFormItem';
 import DatePickerRangeFormItem from 'src/view/shared/form/items/DatePickerRangeFormItem';
 import SupplierAutocompleteFormItem from 'src/view/supplier/autocomplete/SupplierAutocompleteFormItem';
 import ShopAutocompleteFormItem from 'src/view/shop/autocomplete/ShopAutocompleteFormItem';
@@ -164,38 +162,10 @@ const PurchaseListFilter = (props) => {
                   />
                 </Col>
                 <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="totalAmountRange"
-                    label={i18n('entities.purchase.fields.totalAmountRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="paidAmountRange"
-                    label={i18n('entities.purchase.fields.paidAmountRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputRangeFormItem
-                    name="balanceAmountRange"
-                    label={i18n('entities.purchase.fields.balanceAmountRange')}      
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
                   <DatePickerRangeFormItem
                     name="purchaseDateRange"
                     label={i18n('entities.purchase.fields.purchaseDateRange')}    
                     showTime
-                    layout={filterItemLayout}
-                  />
-                </Col>
-                <Col xs={24} md={24} lg={12}>
-                  <InputFormItem
-                    name="purchaseDatails"
-                    label={i18n('entities.purchase.fields.purchaseDatails')}      
                     layout={filterItemLayout}
                   />
                 </Col>

@@ -46,7 +46,7 @@ const DashboardPage = (props) => {
         <Card bordered={false}>
           <Statistic
             title="Products"
-            value={dashboardCounts?.totalProducts}
+            value={parseInt(dashboardCounts?.totalProducts)}
             prefix={<AppstoreOutlined />}
           />
         </Card>
