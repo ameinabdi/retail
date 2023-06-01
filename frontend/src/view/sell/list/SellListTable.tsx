@@ -12,7 +12,6 @@ import TableWrapper from 'src/view/shared/styles/TableWrapper';
 import ButtonLink from 'src/view/shared/styles/ButtonLink';
 import CustomerListItem from 'src/view/customer/list/CustomerListItem';
 import ShopListItem from 'src/view/shop/list/ShopListItem';
-import SellItemListItem from 'src/view/sellItem/list/SellItemListItem';
 import SellReportListTableItem from 'src/view/report/sells/SellReportListTableItem';
 import SellView from '../view/SellView';
 
@@ -107,17 +106,6 @@ const SellListTable = (props) => {
           sorter: true,
           dataIndex: 'sellDate',
         },
-        {
-          title: i18n('entities.sell.fields.sellDetails'),
-          sorter: true,
-          dataIndex: 'sellDetails',
-        },
-        {
-          title: i18n('entities.sell.fields.items'),
-          sorter: false,
-          dataIndex: 'Items',
-          render: (value) => <SellItemListItem value={value} />,
-        }, 
       {
         title: i18n('entities.sell.fields.shop'),
         sorter: false,
@@ -152,7 +140,7 @@ const SellListTable = (props) => {
             </Popconfirm>
           )}
           <Drawer
-          title="View Purchase"
+          title="View Sells"
           width={"70%"}
           onClose={doClose}
           visible={visible === null ? false : visible === record.id ? true : false}

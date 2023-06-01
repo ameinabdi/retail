@@ -4,7 +4,7 @@ import ViewWrapper, {
   viewItemLayout,
 } from 'src/view/shared/styles/ViewWrapper';
 import { i18n } from 'src/i18n';
-import { Form,Col, Row, Card, } from 'antd';
+import { Form,Col, Row,  } from 'antd';
 import CustomerViewItem from 'src/view/customer/view/CustomerViewItem';
 import ShopViewItem from 'src/view/shop/view/ShopViewItem';
 import SellItemListTableitem from 'src/view/sellItem/list/SellItemListTableitem';
@@ -33,6 +33,7 @@ const SellView = (props) => {
       {Boolean(record.customer) && (
           <Form.Item
             {...viewItemLayout}
+            labelAlign='left'
             label={i18n('entities.sell.fields.customer')}
           >
             <CustomerViewItem value={record.customer} />
@@ -43,6 +44,7 @@ const SellView = (props) => {
       {Boolean(record.sellDate) && (
         <Form.Item
           {...viewItemLayout}
+            labelAlign='left'
           label={i18n('entities.sell.fields.sellDate')}
         >
           {record.sellDate}
@@ -53,6 +55,7 @@ const SellView = (props) => {
       {Boolean(record.sellDetails) && (
         <Form.Item
           {...viewItemLayout}
+            labelAlign='left'
           label={i18n('entities.sell.fields.sellDetails')}
         >
           {record.sellDetails}
@@ -63,6 +66,7 @@ const SellView = (props) => {
       {(Boolean(record.totalAmount) || record.totalAmount === 0) && (
           <Form.Item
             {...viewItemLayout}
+              labelAlign='left'
             label={i18n('entities.sell.fields.totalAmount')}
           >
             {Number(record.totalAmount).toFixed(2)}
@@ -73,6 +77,7 @@ const SellView = (props) => {
       {(Boolean(record.paidAmount) || record.paidAmount === 0) && (
           <Form.Item
             {...viewItemLayout}
+              labelAlign='left'
             label={i18n('entities.sell.fields.paidAmount')}
           >
             {Number(record.paidAmount).toFixed(2)}
@@ -83,6 +88,7 @@ const SellView = (props) => {
       {(Boolean(record.balanceAmount) || record.balanceAmount === 0) && (
           <Form.Item
             {...viewItemLayout}
+              labelAlign='left'
             label={i18n('entities.sell.fields.balanceAmount')}
           >
             {Number(record.balanceAmount).toFixed(2)}
@@ -93,6 +99,7 @@ const SellView = (props) => {
       {Boolean(record.shop) && (
           <Form.Item
             {...viewItemLayout}
+              labelAlign='left'
             label={i18n('entities.sell.fields.shop')}
           >
             <ShopViewItem value={record.shop} />
@@ -100,9 +107,7 @@ const SellView = (props) => {
         )}
           </Col>
         </Row>
-        <Card>
         <SellItemListTableitem sell={record} />
-      </Card>
     </ViewWrapper>
   );
 };

@@ -35,7 +35,7 @@ const DashboardPage = (props) => {
   };
   
  
-  if(loading && !dashboardCounts && !rows){
+  if(loading || !dashboardCounts || !rows){
     return <Spinner />
   }
 

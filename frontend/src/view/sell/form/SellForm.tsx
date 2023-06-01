@@ -261,7 +261,7 @@ const SellForm = (props) => {
         {indexes.map((index) => {
         const fieldName = `Items[${index}]`;
         const itemtotalAmount = parseFloat(form.watch(`${fieldName}.quantity`))*parseFloat(form.watch(`${fieldName}.price`))
-        const minSelling = form.watch(`${fieldName}.product`)?.data?.sellingPrice
+        const maxQuantity= form.watch(`${fieldName}.product`)?.data?.availableQuantity
         return (
           <Row className="flex flex-wrap -mx-3 mb-10 " key={index}>
             <InputFormItem
@@ -284,6 +284,7 @@ const SellForm = (props) => {
                 placeholder={i18n('entities.sellItem.fields.quantity')}  
                 required={true}
                 autoFocus
+                max={maxQuantity}
                 />
            </Col>
            <Col span={4} style={{paddingRight:5, paddingLeft:5}}>
@@ -292,13 +293,12 @@ const SellForm = (props) => {
                   placeholder={i18n('entities.sellItem.fields.price')}  
                   required={true}
                   autoFocus
-                  min={minSelling}
-                />
+                 />
            </Col>
            <Col span={4} style={{paddingRight:5, paddingLeft:5}}>
             <InputNumberFormItem
               name={`${fieldName}.total`}
-              value={itemtotalAmount}
+              value={Number(itemtotalAmount || 0).toFixed(2)}
               placeholder={i18n('entities.sellItem.fields.total')} 
               required={true}
               disabled
@@ -330,7 +330,7 @@ const SellForm = (props) => {
               label={i18n('entities.sell.fields.totalAmount')}  
               required={false}
               layout={formItemLayout}
-              value={totalAmount}
+              value={Number(totalAmount|| 0).toFixed(2)}
               disabled
             />
             </Col>
@@ -340,7 +340,7 @@ const SellForm = (props) => {
             <InputFormItem
               name="paidAmount"
               label={i18n('entities.sell.fields.paidAmount')}  
-              required={false}
+              required={true}
               layout={formItemLayout}
             />
             </Col>
@@ -352,7 +352,7 @@ const SellForm = (props) => {
                 label={i18n('entities.sell.fields.balanceAmount')}  
                 required={false}
                 layout={formItemLayout}
-                value={totalAmount-parseFloat(form.watch('paidAmount'))}
+                value={Number(totalAmount-parseFloat(form.watch('paidAmount'))|| 0).toFixed(2)}
                 disabled
               />
             </Col>
