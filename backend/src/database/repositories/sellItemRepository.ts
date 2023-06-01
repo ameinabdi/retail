@@ -317,6 +317,14 @@ class SellItemRepository {
         });
       }
 
+      if (filter.sell) {
+        whereAnd.push({
+          ['sellId']: SequelizeFilterUtils.uuid(
+            filter.sell,
+          ),
+        });
+      }
+
       if (filter.priceRange) {
         const [start, end] = filter.priceRange;
 

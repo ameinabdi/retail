@@ -600,6 +600,13 @@ class ProductRepository {
               query,
             ),
           },
+          {
+            [Op.and]: SequelizeFilterUtils.ilikeIncludes(
+              'fullproduct',
+              'productSerialNumber',
+              query,
+            ),
+          },
         ],
       });
     }
@@ -608,11 +615,11 @@ class ProductRepository {
 
     const records = await options.database.fullproduct.findAll(
       {
-        attributes: ['id', 'productName', 'availableQuantity', 'sellingPrice', 'productPrice'],
+        attributes: ['id', 'productName','productSerialNumber', 'availableQuantity', 'sellingPrice', 'productPrice'],
         where:{
           ...where,
           ['availableQuantity']:{
-            [Op.gt] :0
+            [Op.gt]:0
           }
         },
         limit: limit ? Number(limit) : undefined,
@@ -622,7 +629,7 @@ class ProductRepository {
 
     return records.map((record) => ({
       id: record.id,
-      label: record.productName,
+      label: record.productName+'- '+record.productSerialNumber,
       data: record
     }));
   }
